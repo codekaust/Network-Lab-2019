@@ -17,6 +17,7 @@ proc finish {} {
     exec nam problem5.nam &
     exit 0
 }
+
 set input [gets stdin]
 scan $input "%d %d" N k
 set n(0) [$ns node]
@@ -28,7 +29,9 @@ for {set i 1} {$i < $N} {incr i} {
 }
 puts $y
 puts "$n(0) $n(1)"
-$ns make-lan $y 0.5Mb 40ms LL Queue/DropTail Mac/802_3
+
+$ns newLan $y 0.5Mb 40ms LL Queue/DropTail Mac/Csma/Cd Channel
+
 for {set i 0} {$i < $k} {incr i} {
     set input [gets stdin]
 	scan $input "%d %d" i1 i2
@@ -45,7 +48,7 @@ for {set i 0} {$i < $k} {incr i} {
     set ftp($i) [new Application/FTP]
     $ftp($i) attach-agent $tcp
     # $ftp($i) set type_ FTP
-
+    
     $ns at 0.1 "$ftp($i) start"
 	$ns at 1.5 "$ftp($i) stop"
 }

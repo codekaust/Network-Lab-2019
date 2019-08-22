@@ -1,0 +1,52 @@
+\hypertarget{q1_8c}{}\section{q1.\+c File Reference}
+\label{q1_8c}\index{q1.\+c@{q1.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for q1.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \hyperlink{q1_8c_a8077ec240f1725c73c281101557bc442}{get\+Class} (char ip\+\_\+addr\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{q1_8c_a7a51dc425525cf1503813c5da8b88182}{get\+Network\+And\+Host\+ID} (char ip\+\_\+addr\mbox{[}$\,$\mbox{]}, char ip\+\_\+class)
+\item 
+int \hyperlink{q1_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{q1_8c_a8077ec240f1725c73c281101557bc442}\label{q1_8c_a8077ec240f1725c73c281101557bc442}} 
+\index{q1.\+c@{q1.\+c}!get\+Class@{get\+Class}}
+\index{get\+Class@{get\+Class}!q1.\+c@{q1.\+c}}
+\subsubsection{\texorpdfstring{get\+Class()}{getClass()}}
+{\footnotesize\ttfamily char get\+Class (\begin{DoxyParamCaption}\item[{char}]{ip\+\_\+addr\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Function finds out Class of the IP address 
+\begin{DoxyParams}{Parameters}
+{\em ip\+\_\+addr} & IP address string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{q1_8c_a7a51dc425525cf1503813c5da8b88182}\label{q1_8c_a7a51dc425525cf1503813c5da8b88182}} 
+\index{q1.\+c@{q1.\+c}!get\+Network\+And\+Host\+ID@{get\+Network\+And\+Host\+ID}}
+\index{get\+Network\+And\+Host\+ID@{get\+Network\+And\+Host\+ID}!q1.\+c@{q1.\+c}}
+\subsubsection{\texorpdfstring{get\+Network\+And\+Host\+I\+D()}{getNetworkAndHostID()}}
+{\footnotesize\ttfamily void get\+Network\+And\+Host\+ID (\begin{DoxyParamCaption}\item[{char}]{ip\+\_\+addr\mbox{[}$\,$\mbox{]},  }\item[{char}]{ip\+\_\+class }\end{DoxyParamCaption})}
+
+Function gets Network ID as well as Host ID 
+\begin{DoxyParams}{Parameters}
+{\em ip\+\_\+addr} & IP address string \\
+\hline
+{\em ip\+\_\+class} & IP address class \\
+\hline
+\end{DoxyParams}
+Class A
+
+Class B
+
+Class C \mbox{\Hypertarget{q1_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{q1_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{q1.\+c@{q1.\+c}!main@{main}}
+\index{main@{main}!q1.\+c@{q1.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
