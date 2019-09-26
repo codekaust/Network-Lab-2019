@@ -1,77 +1,61 @@
+ #Create a simulator object
 set ns [new Simulator]
 
+#Routing Protocol used is Distance Vector
 $ns rtproto DV
 
-set nf [open nam_q1.nam w]
-$ns namtrace-all $nf
+set nf [open q1.nam w]
+set f [open q1.tr w]
 
-proc finish {} {
-    global ns nf
+$ns namtrace-all $nf
+$ns trace-all $f
+
+proc end {} {
+    global ns nf f
     $ns flush-trace
     close $nf
-    exec nam nam_q1.nam
+    close $f
+    exec nam q1.nam
     exit 0
 }
 
-for {set i 0} {$i < 3} {incr i} {
-	set node($i) [$ns node]
-}
+# Create the network nodes
+set node1 [$ns node]
+set node2 [$ns node]
+set node3 [$ns node]
 
-set queuesize1 5
-set queuesize2 10
+$node1 color blue
+$node2 color orange
+$node3 color green
 
-set colors(0) Red
-set colors(1) Blue
-set colors(2) Orange
-set colors(3) Black
-set colors(4) Yellow
-set colors(5) Green
+#Create links between the nodes
+$ns duplex-link $node1 $node2 1Mb 10ms DropTail
+$ns duplex-link $node2 $node3 700kb 10ms DropTail
 
-$ns duplex-link $node(0) $node(1) 1Mb 10ms DropTail
-$ns queue-limit $node(0) $node(1) $queuesize1
-$ns duplex-link $node(0) $node(2) 512kb 10ms DropTail
-$ns queue-limit $node(0) $node(2) $queuesize2
+$ns queue-limit $node1 $node2 8
+$ns queue-limit $node2 $node3 15
 
-for {set i 1} {$i < 3} {incr i} {
-    set node1 0
-    set node2 $i
-	set tcp_con [new Agent/TCP]
-	$ns attach-agent $node($node1) $tcp_con
-	$tcp_con set class_ $i
+#Building link node1 and node3
+set udp_con_0 [new Agent/UDP]
+$udp_con_0 set class_ 1
+$ns attach-agent $node1 $udp_con_0
 
-	set sink_node [new Agent/TCPSink]
-	$ns attach-agent $node($node2) $sink_node
-	$ns connect $tcp_con $sink_node
+set sink_node_0 [new Agent/Null]
+$ns attach-agent $node3 $sink_node_0
 
-	$ns color $i $colors([expr ($i) % 6])
-	$tcp_con set fid_ $i
+$ns connect $udp_con_0 $sink_node_0
 
-	set ftp_con [new Application/FTP]
-	$ftp_con attach-agent $tcp_con
-	$ns at 0.1 "$ftp_con start"
-	$ns at 1.5 "$ftp_con stop"
-}
-for {set i 1} {$i < 3} {incr i} {
-    set node1 $i
-    set node2 0
-	set tcp_con [new Agent/TCP]
-	$ns attach-agent $node($node1) $tcp_con
-	$tcp_con set class_ $i
+$ns color 1 Red
+$udp_con_0 set fid_ 1
 
-	set sink_node [new Agent/TCPSink]
-	$ns attach-agent $node($node2) $sink_node
-	$ns connect $tcp_con $sink_node
+set cbr_con_0 [new Application/Traffic/CBR]
+$cbr_con_0 set packetSize_ 1500
+$cbr_con_0 set interval_ 0.015
+$cbr_con_0 attach-agent $udp_con_0
 
-	$ns color $i $colors([expr ($i) + 2 % 6])
-	$tcp_con set fid_ $i
+$ns at 0.2 "$cbr_con_0 start"
+$ns at 1.8 "$cbr_con_0 stop"
 
-	set ftp_con [new Application/FTP]
-    $ftp_con set packetSize_ 20
-    $ftp_con set rate_ 50Kb
-	$ftp_con attach-agent $tcp_con
-	$ns at 0.1 "$ftp_con start"
-	$ns at 1.5 "$ftp_con stop"
-}
+$ns at 2.0 "end"
 
-$ns at 2.0 "finish"
 $ns run
