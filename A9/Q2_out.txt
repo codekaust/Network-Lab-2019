@@ -1,0 +1,11 @@
+96
+Average Packet Size : 781.5988486934929
+Average Flow Duration : 70.38942772349914
+Average Number of Packets Sent per Flow : 2.686613475177305
+Average Number of Packets Received per Flow : 5.167553191489362
+Average Number of Bytes Sent per Flow : 566.6068262411347
+Average Number of Bytes Received per Flow : 5572.20079787234
+Average Ratio of Incoming Packets to Outgoing Packets : 0.5199004975124378
+Average Ratio of Incoming Bytes to Outgoing Bytes : 0.10168456715656853
+Average Time Interval b/w Packets Sent : 0.0006995987368667686
+Average Ratio of Connections to Number of Destination IPs : 0.5208333333333334

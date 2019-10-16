@@ -259,6 +259,8 @@ int main()
         for (auto i: str) 
             encodedString+=codes[i]; 
 
+        cout << "Length: " << encodedString.size() << endl;
+
         cout << "\nEncoded Huffman data:\n" << encodedString << endl; 
 
         decodedString = decode_file(minHeap.top(), encodedString); 

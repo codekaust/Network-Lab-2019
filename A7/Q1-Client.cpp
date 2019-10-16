@@ -73,7 +73,7 @@ string CyclicRedundancyCheck(string s,int n,string divisor)
         string temp=rem+s[i];
         rem="";
         cout<<temp<<endl;
-        if(temp[0]=='0')
+        if(s[i]=='0')
         {
             for(int j=1;j<temp.length();++j)
             {

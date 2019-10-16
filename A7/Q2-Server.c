@@ -122,10 +122,11 @@ int main(int argc, char const *argv[])
         printf("\nPress the number of bits to be flipped :");
         int num;
         scanf("%d", &num);
-        printf("\nEnter the indices of the bits to be flipped\n");
+        printf("\nEnter the indices of the bits to be flipped from end\n");
         for (int i =0; i< num; i++){
             int pos;
             scanf("%d", &pos);
+            pos = m+r-pos+1;
             finalhamming[pos] = (finalhamming[pos]+1)%2;
         }
     }

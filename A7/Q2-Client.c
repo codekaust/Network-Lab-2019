@@ -13,6 +13,7 @@ int main(int argc, char const *argv[])
     int opt = 1; 
     int addrlen = sizeof(address); 
     char buffer[1024] = {0}; 
+    char *hello = "Hello from server"; 
        
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) 
     { 
@@ -96,5 +97,7 @@ int main(int argc, char const *argv[])
               buffer[error_pos]='1';
           printf("\nCorrected message: %s",buffer);
         }
+    //printf("\n%d",error_pos);
+    //printf("%c",buffer[0]);
     return 0; 
 } 
